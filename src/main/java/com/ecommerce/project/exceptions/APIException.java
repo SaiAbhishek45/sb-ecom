@@ -1,14 +1,25 @@
 package com.ecommerce.project.exceptions;
 
-public class APIException extends RuntimeException{
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Getter
+@NoArgsConstructor
+public class APIException extends RuntimeException {
+
+    private String message;
+    private String errorCode;
+    private LocalDateTime timestamp;
 
 
-    public APIException(){
-
-    }
-
-    public APIException(String message){
+    public APIException(String message, String errorCode) {
         super(message);
+        this.message = message;
+        this.timestamp = LocalDateTime.now();
+        this.errorCode = errorCode;
+
     }
 
 }
